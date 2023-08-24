@@ -19,8 +19,17 @@ export default function Home(props) {
   // Memoize
   const tableColumns = useMemo(() => columns, []);
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns: tableColumns, data: products });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    state,
+    setGlobalFilter,
+    prepareRow,
+  } = useTable({ columns: tableColumns, data: products }, useGlobalFilter);
+
+  const { globalFilter } = state;
 
   return (
     <div className={styles.main}>
@@ -29,6 +38,13 @@ export default function Home(props) {
       </div>
       <div className={styles.pageBody}>
         <h3>Details of users...</h3>
+      </div>
+      <div className={styles.searchStyles}>
+        <input
+          type="text"
+          value={globalFilter || ""}
+          onChange={(e) => setGlobalFilter(e.target.value)}
+        />
       </div>
 
       <div className={styles.tableStyles}>
