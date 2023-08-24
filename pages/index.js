@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import styles from "../styles/Home.module.css";
-import { useTable, useGlobalFilter } from "react-table";
+import { useTable, useGlobalFilter, useFilters } from "react-table";
+import FilterForm from "../components/filterForm";
 
 export default function Home(props) {
   const [products, setProducts] = useState(props.products);
@@ -9,18 +10,22 @@ export default function Home(props) {
     {
       Header: "Product Id",
       accessor: "id",
+      Filter: FilterForm,
     },
     {
       Header: "Name",
       accessor: "title",
+      Filter: FilterForm,
     },
     {
       Header: "Category",
       accessor: "category",
+      Filter: FilterForm,
     },
     {
       Header: "Price",
       accessor: "price",
+      Filter: FilterForm,
     },
   ];
 
@@ -35,7 +40,11 @@ export default function Home(props) {
     state,
     setGlobalFilter,
     prepareRow,
-  } = useTable({ columns: tableColumns, data: products }, useGlobalFilter);
+  } = useTable(
+    { columns: tableColumns, data: products },
+    useFilters,
+    useGlobalFilter
+  );
 
   const { globalFilter } = state;
 
@@ -63,6 +72,9 @@ export default function Home(props) {
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps()}>
                     {column.render("Header")}
+                    <div>
+                      {column.canFilter ? column.render("Filter") : null}
+                    </div>
                   </th>
                 ))}
               </tr>
