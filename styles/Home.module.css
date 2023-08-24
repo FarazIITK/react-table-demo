@@ -14,3 +14,27 @@
   font-size: 25px;
   color: rgb(75, 198, 181);
 }
+
+/* index.css */
+
+.tableStyles table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableStyles td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.tableStyles th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.tableStyles tr:nth-child(even) {
+  background-color: #dddddd;
+}
