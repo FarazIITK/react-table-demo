@@ -14,6 +14,14 @@ export default function Home(props) {
       Header: "Name",
       accessor: "title",
     },
+    {
+      Header: "Category",
+      accessor: "category",
+    },
+    {
+      Header: "Price",
+      accessor: "price",
+    },
   ];
 
   // Memoize
@@ -37,7 +45,7 @@ export default function Home(props) {
         <h2>React Table Demo</h2>
       </div>
       <div className={styles.pageBody}>
-        <h3>Details of users...</h3>
+        <h3>List of products...</h3>
       </div>
       <div className={styles.searchStyles}>
         <input
